@@ -1,1 +1,25 @@
+s = input()
+n = len(s)
+# abbba
+reslen= 0
+res=""
+for i in range(n):
+    l, r = i, i
+    for j in range(n):
+        if l >= 0 and r < n and s[l] == s[r]:
+            if (1+r-l)>reslen:
+                res=s[l:r+1]
+                reslen=(1+r-l)
+            l-=1
+            r+=1
+    l, r = i, i+1
+    for j in range(n):
+        if l>=0 and r<n and s[l]==s[r]:
+            if reslen<(1+r-l):
+                res = s[l:r + 1]
+                reslen = (1 + r - l)
+            l-=1
+            r+=1
+print(res)
+
 
