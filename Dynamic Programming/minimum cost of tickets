@@ -1,0 +1,23 @@
+# problem statement :    https://leetcode.com/problems/minimum-cost-for-tickets/
+
+#logic :
+###  we have to start from the end of the days to the begining and for each element of the days check from the current element to the last element ex: 1 2 3 4 5 6 if 
+## we are at 3 the we have to move to the last i.e 6 so now check the mimimum cost require to travel to those days ex 6 one day is enough for 5 one day ticket is enough 
+### similarly checking for the last 1 total cost of one day ticket is more than the 7 day pass so we have to choose the 7 day pass that's the logic we have to work here !!
+
+days=list(map(int,input().split())
+cost=list(map(int,input().split())
+n=len(days)
+dp={}
+
+# moving end to front   
+
+for i in range(n-1,-1,-1):
+    dp[i]=float("inf")
+    for d,c in zip([1,7,30],costs):
+    #reintilizing the i to the temp variable for checking with every cost 
+        h=i
+        while h<n and days[h]<days[i]+d:         #### if we out of bounce of the days or days is less than the pass days we have to stop or else we have to check again
+            h+=1
+        dp[i]=min(dp[i],c+dp.get(h,0))
+print(dp[0])
