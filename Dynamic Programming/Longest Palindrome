@@ -23,3 +23,7 @@ for i in range(n):
 print(res)
 
 
+##### LOGIC:
+### here we're a checking the palindromes for two cases one for even palindromes and other for odd palindromes and we just selecting one element in the string and moving 
+### opposite direction towards the ends of the string with similarly check both pointers are equal or not if equal append it to the string else leave it, similary
+### we gonna check the size of the palindromes if it is greater than the previous we have to update it else we gonna leave it as it is ....
