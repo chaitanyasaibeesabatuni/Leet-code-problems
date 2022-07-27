@@ -1,0 +1,15 @@
+# problem statement :    https://leetcode.com/problems/house-robber/
+
+#Logic : we have to select the first element and leave the adjacent and find the max element of the remaining and we have to traverse the entire string so that's form an 
+#maximum at the last element.
+
+#problem solution :
+
+houses=list(map(int,input().split()))
+rob1,rob2=0,0
+
+for i in houses:
+    temp=max(rob1+i,rob2)
+    rob1=rob2
+    rob2=temp
+print(rob2)
