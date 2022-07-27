@@ -1,4 +1,51 @@
 #### problem statement :     https://leetcode.com/problems/interleaving-string/
 
 ### Logic :
+### We have to form the grid by using len of s1 and s2 and now we have to consider the two pointer point s1 and s2 and third pointer is summation of first two so they 
+## check each and every element so now for last grid for forming empty space with empty string is pretty easy so we have to apply true for that grid by that similarly 
+## fill the grid by checking the bottom for s1 string if it has equal value similarly s2 check the side grid box if its true it places true
+
+#### tabulation part:
+
+
+def interleaving(s1,s2,s3):
+    if len(s1)+len(s2)!=len(s3):
+        return False
+    else:
+        dp=[[False]*(len(s2)+1) for i in range(len(s2)+1)]
+        dp[len(s1)][len(s2)]=True
+        for i in range(len(s1),-1,-1):
+            for j in range(len(s2),-1,-1):
+                if i<len(s1) and s1[i]==s3[i+j] and dp[i+1][j]:
+                    dp[i][j]=True
+                if j<len(s2) and s2[j]==s3[i+j] and dp[i][j+1]:
+                    dp[i][j]=True
+        return dp[0][0]
+        
+        
+'''
+### memoization solution
+    dp={}
+    def dfs(i,j):
+        if i==len(s1) and j==len(s2):
+            return True
+        if (i,j) in dp:
+            return dp[(i,j)]
+        if i<len(s1) and s1[i]==s3[i+j] and dfs(i+1,j):
+            return True
+        if j<len(s2) and s2[j]==s3[i+j] and dfs(i,j+1):
+            return True
+          ### if both cases fails then we have to assign False to the i,j and return false for the calling
+        dp[(i,j)]=False
+        return False
+    return dfs(0,0)
+  ''''
+
+s1=input()
+s2=input()
+s3=input()
+if interleaving(s1,s2,s3):
+    print("yes")
+else:
+    print("No")
 
