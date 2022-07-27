@@ -15,6 +15,9 @@ for i in range(n-1,-1,-1):
     if s[i]=="0":
         dp[i]=0
     else:
+    #actually you got a doubt that you have to place 1 if it was not zero at the single element but it was right upto some extent when we traversing to the entire string
+    # so we have to add the previous case also that's why we have to add the previous case instead of one ex: if 1234 we are at 2 so now for 2 we have to place one but 
+    #we have to consider the remaining 3 and 4 also so we have to place dp[i+1]
         dp[i]=dp[i+1]
     #for two elements :
     if i+1<n and (s[i]=="1" or s[i]=="2" and s[i+1] in "0123456"):
