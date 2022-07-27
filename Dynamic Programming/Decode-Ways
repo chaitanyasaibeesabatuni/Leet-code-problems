@@ -1,0 +1,23 @@
+# problem link :
+## https://leetcode.com/problems/decode-ways/
+
+#### Solution :
+
+
+s=input()
+n=len(s)
+#intializing the best base case if we crosses the len of the string we have to return zero
+dp={n:1}
+#bottom up approach
+for i in range(n-1,-1,-1):
+    #if zero occurs we have to insert zero so it was bad case in our problem
+    #logic for considering single element
+    if s[i]=="0":
+        dp[i]=0
+    else:
+        dp[i]=dp[i+1]
+    #for two elements :
+    if i+1<n and (s[i]=="1" or s[i]=="2" and s[i+1] in "0123456"):
+        #we are adding because we have consider the two elements and single element test case also so that's why we are adding
+        dp[i]+=dp[i+2]
+print(dp[0])
