@@ -1,0 +1,17 @@
+######## problem statement : https://leetcode.com/problems/longest-increasing-subsequence/
+
+###Logic :
+### we have to check the elements in the list from bact to front if the element is greater than the previous element we have to check the condition and cache the value
+
+### Solution :
+
+seq=list(map(int,input().split()))
+n=len(seq)
+
+dp=[1]*n
+
+for i in range(n-1,-1,-1):
+  for j in range(i+1,n):
+    if seq[i]<seq[j]:
+      dp[i]=max(dp[i],1+dp[j])
+print(max(dp))
