@@ -4,7 +4,7 @@
 ### return the result
 
 l=list(map(int,input().split()))
-
+## why we have to intialize res to max value because every value in the list is 0 and except one so we have to return that value so that's the reason we are doing it.
 res=max(l)
 cmax,cmin=1,1
 for i in l:
