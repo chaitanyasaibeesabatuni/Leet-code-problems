@@ -1,0 +1,25 @@
+## problem statement :      https://leetcode.com/problems/coin-change/  
+
+### Logic :
+
+#### we have to find the number of min number of coins for the target so we gonna do it find min no of coins for the each number up to target so we can get easly get 
+## min number of coins  for that we consider a array named dp and then we gonna insert the values one by one and base case is dp[0]=0 and imp point is 
+## dp[i]=min(dp[i],1+dp[amount -coins] it means we gonna find the number of min coins for that "1" for i if i=7 then dp[7]=1+dp[3] where we select 4+3 so that's why we 
+## select 4th coin so 1+no of coins of 3 to get 7 by this condition we gonna check every case 
+
+
+#### Solution :
+
+coins=list(map(int,input().split()))
+target=int(input())
+
+dp=[target+1]*(target+1)
+dp[0]=0
+for i in range(target+ 1):
+  for c in coins:
+    if i-c>=0:
+      dp[i]=min(dp[i],dp[i-c]+1)
+if dp[target]!=(target+1):
+  print(dp[target])
+else:
+  print(-1)
