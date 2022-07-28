@@ -1,0 +1,21 @@
+#### problem statement :  https://leetcode.com/problems/increasing-triplet-subsequence/
+
+#### Logic :
+##### similar to logic subsequence but the difference is we have just print true if it is equal or greater than 3
+
+### solution :
+
+def increasingTriplet(self, nums: List[int]) -> bool:
+#### if the input values is so huge with the repeating elements then set of those nums is very optimal to eliminate the time error
+    if len(set(nums))<3:
+        return False
+    n=len(nums)
+    dp=[1]*n
+    for i in range(n-1,-1,-1):
+        for j in range(i+1,n):
+            if nums[i]<nums[j]:
+                dp[i]=max(dp[i],1+dp[j])
+    return max(dp)>=3
+    
+ nums=list(map(int,input().split()))
+ print(increasingTriplet(nums))
