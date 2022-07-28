@@ -1,0 +1,21 @@
+### problem statement :   https://leetcode.com/problems/house-robber-ii/
+
+### Logic :Similar to house robber problem but we have to reuse the code of house robber problem by just calling it twice 
+
+#### Solution:
+
+def rob(nums):
+    if len(nums)==1:
+        return nums[0]
+    else:
+        def helper(nums):
+            n=len(nums)
+            rob1,rob2=0,0
+            for i in range(n):
+                temp=max(rob1+nums[i],rob2)
+                rob1=rob2
+                rob2=temp
+            return rob2
+    return max(helper(nums[1:]),helper(nums[:len(nums)-1]))
+    
+print(rob(list(map(int,input().split()))))
