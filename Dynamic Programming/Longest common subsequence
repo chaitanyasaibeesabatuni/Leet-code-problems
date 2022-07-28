@@ -1,0 +1,21 @@
+#### problem statement :  https://leetcode.com/problems/longest-common-subsequence/
+
+### Logic :
+#### for the give two string we do bottom up approach and we have to check the each grid if the element matches then we have to add one to the diagnol element else we 
+### have to take the max of side grid or bottom grid .
+
+### solution :
+
+s=input()
+k=input()
+n=len(s)
+m=len(k)
+dp=[[0]*(m+1) for i in range(n+1)]
+
+for i in range(n-1,-1,-1):
+  for j in range(m-1,-1,-1):
+    if s[i]==k[j]:
+      dp[i][j]=1+dp[i+1][j+1]
+    else:
+      dp[i][j]=max(dp[i][j+1],dp[i+1][j])
+print(dp[0][0])
