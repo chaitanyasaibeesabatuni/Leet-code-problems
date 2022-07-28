@@ -1,0 +1,21 @@
+#### problem statement :  https://leetcode.com/problems/maximum-product-subarray/
+
+### Logic : we have to traverse from each element on the array and replacing the current max and currentmin and res with respect to the product values and finally 
+### return the result
+
+l=list(map(int,input().split()))
+
+res=max(l)
+cmax,cmin=1,1
+for i in l:
+  if i==0:
+    cmax,cmin=1,1
+  else:
+    temp=cmax*i
+    temp2=cmin*i
+    cmax=max(temp,temp2,i)
+    cmin=min(temp,temp2,i)
+    ## if incase zero occurs at last or middle if res is greater than the value of cmax at that pos to last then we have store the prev cmax value that's the reason we're
+    ### using the res variable
+    res=max(res,cmax)
+print(res)
