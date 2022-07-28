@@ -1,0 +1,27 @@
+## problem statement : https://leetcode.com/problems/robot-bounded-in-circle/
+
+#### Logic :
+
+# let us apply basic math to the problem for that if the position and direction of the robot changes then it wasn't in a circle any more so now 
+## consider if it changes the direction interchange the directions and apply negative based on the quadrants 
+
+
+#### solution: 
+
+def robot(s):
+  dirx,diry=0,1
+  x,y=0,0
+  for i in s:
+    if i=="G":
+      x,y=x+dirx,y+diry
+    elif i=="L":
+      dirx,diry=-1*diry,dirx
+    else:
+      dirx,diry=diry,-1*dirx
+  return if (x,y)==(0,0) or (dirx,diry)!=(0,1)
+  
+s=input()
+if robot(s):
+  print("YES")
+else:
+  print("NO")
