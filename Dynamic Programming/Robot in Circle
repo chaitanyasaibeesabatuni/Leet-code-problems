@@ -25,3 +25,53 @@ if robot(s):
   print("YES")
 else:
   print("NO")
+
+
+############### Another approach without math
+
+def isRobotBounded(self, instructions: str) -> bool:
+
+    def move(s,direction):
+        if direction=="N":
+            s[1]+=1
+        elif direction=="E":
+            s[0]+=1
+        elif direction=="W":
+            s[0]-=1
+        else:
+            s[1]-=1
+
+    def get_directionl(curr_dir):
+        if curr_dir=="N":
+            return "W"
+        elif curr_dir=="E":
+            return "N"
+        elif curr_dir=="W":
+            return "S"
+        else:
+            return "E"
+
+    def get_directionr(curr_dir):
+        if curr_dir=="N":
+            return "E"
+        elif curr_dir=="E":
+            return "S"
+        elif curr_dir=="W":
+            return "N"
+        else:
+            return "W"
+
+    s = [0,0]
+    d  = "N"
+    for i in instructions:
+        if i=="G":
+            move(s,d)
+
+        elif i=="L":
+            d = get_directionl(d)
+
+        else:
+            d = get_directionr(d)
+
+    return (s[0]==0 and s[1]==0) or d!="N"
+                
