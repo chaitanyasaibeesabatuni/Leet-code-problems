@@ -1,0 +1,22 @@
+### problem statement : https://leetcode.com/problems/triangle/
+
+##### Logic :
+
+##### we have to select bottom up approach we select the bottom two childs and add the current element to the min of those two elements we can store it in the 
+#### dp and we use it for the next branch 
+
+
+### Solution :
+
+def minimumTotal(triangle):
+    k=triangle[::-1]
+    dp=[0]*(len(triangle)+1)
+    for i in k:
+    #### here ind is the index for the each element by using this we can change our dp values
+        for ind,r in enumerate(i):
+            dp[ind]=r+min(dp[ind],dp[ind+1])
+    return dp[0]
+    
+n=int(input())
+triangle=[[int(i) for i in input().split()] for j in range(n)]
+print(minimumTotal(triangle))
