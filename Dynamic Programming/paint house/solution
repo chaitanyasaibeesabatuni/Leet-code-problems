@@ -1,5 +1,23 @@
 #### premium problem so problem statememnt is in image folder
+#### problem statement : https://www.interviewbit.com/problems/paint-house/
 
-#### Logic :
+
+#### Logic : we have to consider the two parameters for this prblm i.e no of house and the no of paint so basicall we have size of matrix is no of house and the most 
+## common info we know i.e we have 3 paints so we can traverse each approach by top to bottom by just checking the minimum value at each step
  
-##
+## Solution :
+
+n=int(input())
+houses=[[int(i) for i in input().split()] for _ in range(n)]
+dp=[0,0,0]
+#intially dp is consists of zeroes for cost of each paint we required so we can delve through the solution we can breifly understand the solution 
+
+for i in range(n):
+ dp0=houses[i][0]+min(dp[1],dp[2])
+ dp1=houses[i][1]+min(dp[0],dp[2])
+ dp2=houses[i][2]+min(dp[1],dp[0])
+ dp=[dp0,dp1,dp2]
+print(min(dp))
+
+
+#### here we are updating each solution row by row from top to bottom and collecting the minimum solution at the bottom as we required !!!!
