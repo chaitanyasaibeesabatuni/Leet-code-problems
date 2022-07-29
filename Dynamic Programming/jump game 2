@@ -1,0 +1,23 @@
+#### similarly jump game but here we have to find the minimum number of steps to reach the last position .
+
+#### problem statement: https://leetcode.com/problems/jump-game-ii/
+
+#### Logic : We have to use the sliding window algo to that so we have to pointers l and r each time we check the farthest point to the pointers so 
+
+##### sliding window method 
+
+def func(l):
+  l=r=0
+  res=0
+  while r<len(l)-1:
+    maxpoint=0
+    for i in range(l,r+1):
+      maxpoint=max(maxpoint,i+l[i])
+    l=r+1
+    r=maxpoint
+    res+=1
+  return res
+ 
+l=list(map(int,input().split())
+print(func(l))
+
