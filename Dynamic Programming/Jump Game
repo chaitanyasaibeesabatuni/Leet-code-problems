@@ -1,0 +1,42 @@
+##### problem statement :  https://leetcode.com/problems/jump-game/
+
+##### Logic : we have to use both greedy and dynamic programming but here greedy is the best choice rahter than dp
+
+#### traverse to the entire list from back to front by changing the destination part if it is possible by the element to reach the next position 
+### for example if the last second element is able to move the last element then we need not to move the before element is enought to move to the next 
+### element it's fine with that by using the logic we can write the optimal code 
+
+
+##### method 1:
+
+def method1(l):
+  flag=len(l)-1
+  for i in range(len(l)-1,-1,-1):
+    if i+l[i]>=flag:
+      flag=i
+  return True if flag==0 else Flase
+  
+#####Method 2
+
+def method2(l):
+  curr=l[0]
+  for i in range(1,len(l)):
+    if curr==0:
+      return False
+   
+   ### this next step means we are moving one step forward so we gonna remove one step from the current element
+    curr-=1
+    
+    #### this next step means if the current element reaches the next step then the next element is greater than current ele so we get more steps to move forward that the 
+    ##### reason we are taking the max value
+    
+    curr=max(curr,nums[i])
+ 
+ ### if it comes out of the loop then it reaches the last position so we have to return true for that 
+ return True
+ 
+ 
+ 
+l=list(map(int,input().split()))
+print(method1(l))
+print(method2(l))
