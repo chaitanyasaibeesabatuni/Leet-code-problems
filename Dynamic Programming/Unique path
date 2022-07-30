@@ -1,0 +1,31 @@
+### problem statement  :  https://leetcode.com/problems/unique-paths/
+
+#### Logic :so try bottom up approach here we are selecting each box so for the last box we already in target so place one for the next box it takes only one step to
+### right if takes down it out of bounce so we place one for the similar way we place the last entire row as one and for upper box of the target we have only one
+### we have only one choice that is down if take right it's out of bounce then we have to choose only one and similary for the next box here it's the intersting part
+### arise so we can move to right and down so we place 2 and for the next left box we have to add the bottom grid and right grid to it by this logic we can get
+## the output
+
+def robot(rows, coloums):
+    finalrow = [1] * coloums
+    for r in range(rows - 1):
+        check = [1] * coloums
+        for c in range(coloums - 2, -1, -1):
+            # We know that the last grid contains only ones so we ignore that and continue with the rest
+            check[c] = check[c + 1] + finalrow[
+                c]  # finalrow means bottom row so we add next grid and bottom grid so hence satisfies the solution
+
+        finalrow = check
+
+
+    return finalrow[0]
+
+rows,coloums=map(int,input().split())
+print(robot(rows,coloums))
+
+
+
+
+##### another approch:
+def robot(rows,coloums):
+  return math.comb(rows+coloums-2,rows-1)
