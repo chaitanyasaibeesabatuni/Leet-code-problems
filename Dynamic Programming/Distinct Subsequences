@@ -1,0 +1,47 @@
+#### problem statement  :   https://leetcode.com/problems/distinct-subsequences/
+
+##### Logic :  check the current element of given string to the current element of the another string if doesn't equal we have increment one thing to the first string
+##### if its equal then we have to move to the next element on both input and checking string and along with we have to move to next element on input string but not on 
+#### checking string , so by that we can find the relevant output.
+
+
+def distinctstringsubsequence(s,t):
+  n=len(s)
+  m=len(t)
+  
+  dp={}
+  
+  def dfs(i,j):
+    if j==m:
+      return 1
+    if i==n:
+      return 0
+    if (i,j) in dp:
+      return dp[(i,j)]
+    if s[i]==t[j]:
+      dp[(i,j)]=dfs(i+1,j+1)+dfs(i+1,j)
+    else:
+      dp[(i,j)]=dfs(i+1,j)
+    return dp[(i,j)]
+  return dfs(0,0)
+  
+  
+s=input()
+t=input()
+print(distinctstringsubsequence(s,t))
+
+
+########### top down method :
+'''
+def dp(self, x, y, M, N):
+    t = [[0 for _ in range(N+1)] for _ in range(M+1)]
+    for i in range(M+1):
+        t[i][0] = 1
+    for m in range(1, M+1):
+        for n in range(1, N+1):
+            if x[m-1] == y[n-1]:
+                t[m][n] = t[m-1][n-1] + t[m-1][n]
+            else:
+                t[m][n] = t[m-1][n]
+    return t[M][N]
+ '''
