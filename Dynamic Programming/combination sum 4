@@ -1,0 +1,41 @@
+#### problem statement : https://leetcode.com/problems/combination-sum-iv/
+
+#### Logic : we have to check the each number upto target and add those to the dp , like we have to store each element possibility and store in cache and add to the next 
+#### element upto target , 
+
+
+#### Solution :
+
+
+###### Top down method :
+
+def combinationSum4(nums,target):
+    @cache
+    def func(target):
+        if target==0:
+            return 1
+        if target<0:
+            return 0
+
+        return sum(
+        func(target-i) if target>=i else 0 for i in nums
+        )
+    return func(target)
+    
+    
+#### bottom up solution :
+
+def combinationSum4(nums,target):
+    dp={}
+    dp[0]=1
+    for i in range(1,target+1):
+        dp[i]=0
+        for j in nums:
+            dp[i]+=dp.get(i-j,0)
+    return dp[target]
+    
+nums=list(map(int,input().split())
+target=int(input())
+print(combinationSum4(nums,target))
+
+
