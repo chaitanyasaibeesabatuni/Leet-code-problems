@@ -1,0 +1,29 @@
+#### problem statement  : https://leetcode.com/problems/number-of-ways-to-rearrange-sticks-with-k-sticks-visible/
+
+### Logic : quite hard problem but we can solve by assuming the last candle we're selecting instead of considering it as first so by that we can reduce the size of array 
+### and number of the required candle so by that we do the problem using caching .
+
+### solution :
+
+
+def rearrangeSticks(n,k):
+    dp={}
+    if k>n:
+        return 0
+    mod = 10**9 + 7
+    def dfs(i,j):
+        if i==j:
+            return 1
+        if i==0 or j==0:
+            return 0
+        if (i,j) in dp:
+            return dp[(i,j)]
+
+        dp[(i,j)]=(dfs(i-1,j-1)+(i-1)*dfs(i-1,j))%mod
+
+        return dp[(i,j)]
+
+    return dfs(n,k)%(10**9+7)
+    
+n,k=map(int,input().split())
+print(rearrangeSticks(n,k))
