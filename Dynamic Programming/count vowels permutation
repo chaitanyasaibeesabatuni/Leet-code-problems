@@ -1,2 +1,34 @@
 ##### problem statement  :  https://leetcode.com/problems/count-vowels-permutation/submissions/
 
+#### Logic: consider the element and have the given constrains in the mind and let us form an base case for that for n=1 then we get each vowel as an individual element 
+#### then let us consider it has an 1 each for each element in dp and then if n=0 we doesn't get any element so we put empty list in the dp and then we iterate upto 
+### the number by adding the each element with the previous elements of the given constrains for example for getting a we have constrains that a may get followed by u i e
+### etc we have to add those stuff to a we get value of a at that instant similarly all we get the same and finaly we have to return the sum value of those may the values 
+##### are two big then we have to apply mod to the obtained values i.e 10**9+7.
+
+
+
+#### Solution : 
+
+def countvowels(n):
+  dp=[[],[1,1,1,1,1]]
+  
+  a,i,e,o,u=0,1,2,3,4
+  m=10**9+7
+  for j in range(2,n+1):
+    dp.append([0,0,0,0,0])
+    
+    dp[j][a]=(dp[j-1][e]+dp[j-1][u]+dp[j-1][i])%m
+    dp[j][e]=(dp[j-1][a]+dp[j-1][i])%m
+    dp[j][i]=(dp[j-1][e]+dp[j-1][0])%m
+    dp[j][o]=(dp[j-1][i])%m
+  return sum(dp[n])%m
+  
+  
+  
+print(countvowels(int(input()))
+
+
+
+
+###### here m is the mod for the huge values it because more difficult so mod of that value refined it to consine value.
