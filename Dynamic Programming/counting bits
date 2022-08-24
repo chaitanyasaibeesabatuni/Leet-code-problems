@@ -1,0 +1,27 @@
+#### problem statement : https://leetcode.com/problems/counting-bits/submissions/
+
+#### brute force : 
+
+def countBits(n):
+    a=[]
+    for i in range(n+1):
+        a.append(bin(i).replace("0b","").count("1"))
+    return a
+    
+##### dp solution :
+
+def countbit(n):
+    dp=[0]*(n+1)
+    val=1
+    ### here the val is offset that means upto number we can easy look back to the numbers for example 0 to 3 binary numbers are repeating with extra one bit from 4 to 7
+    ### so here 4 is offset by using that we can easly compute from 8 to 15 we can have same bits upto 8 by addition one bit only so here offset is 8 like that 
+    for i in range(1,n+1):
+        if val*2==i:
+            val=i
+        dp[i]=1+dp[i-val]
+    return dp
+    
+    
+n=int(input())
+print(countbit(n))
+print(countBits(n))
