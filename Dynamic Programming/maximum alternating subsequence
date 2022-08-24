@@ -1,0 +1,46 @@
+#### Problem Solution :  https://leetcode.com/problems/maximum-alternating-subsequence-sum/
+
+#### Logic : we just consider two alternatives i.e first one we just consider the value or ignore the value and second one is now considering the value we have to add or
+### subract it to the total so now based on the previous term we have to choose it , if the previous one is added then we have to subract the next term similarly we have 
+### to subract the term if the previous is added to the total .
+
+
+##### Recursive solution :
+
+def maxalsubsequence(nums):
+  
+  dp={}
+  def dfs(i,even):
+    if i==len(nums):
+      return 0
+    if (i,even) in dp:
+      return dp[(i,even)]
+    
+    #now consider the element here based on the even if even is true it means we have to add else we have to add -ve of the integer
+    
+    total= nums[i] if even else (-1*nums[i])
+    
+    ### now the two way selection we have to consider the element or we have to ignore the element if we choose then we have to change the even else it remains same
+    ### that means if we consider the element then true becomes false and vice versa but if we doesn't consider it remains same !!!!
+    
+    dp[(i,even)]=max(total+dfs(i+1, not even),dfs(i+1,even))
+    return dp[(i,even)]
+return dfs(0,True)
+
+
+
+###### dynamic solution :
+
+### here we reduce the memory complexity also so we doesn't need of  o(n^2) memory like previous approach we just need o(n) memory and time complexity becomes same 
+### like previous approach O(n).
+
+def maxalsubseq(nums):
+  sumeven,sumodd=0,0
+  k=len(nums)
+  for i in range(k-1,-1,-1):
+      tempeven=max(sumeven,sumodd+nums[i])
+      tempodd=max(sumodd,sumeven-nums[i])
+      sumeven,sumodd=tempeven,tempodd
+  return sumeven
+  
+
