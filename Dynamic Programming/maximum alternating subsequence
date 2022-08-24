@@ -44,3 +44,7 @@ def maxalsubseq(nums):
   return sumeven
   
 
+
+nums=list(map(int,input().split())
+print(maxalsubseq(nums))
+print(maxalsubsequence(nums))
