@@ -4,6 +4,25 @@
 ### subract it to the total so now based on the previous term we have to choose it , if the previous one is added then we have to subract the next term similarly we have 
 ### to subract the term if the previous is added to the total .
 
+###### brute force :
+def maxAlternatingSum(nums):
+    ans = 0
+    direction = 'even'
+    n = len(nums)
+    for i in range(n-1):
+    #### if it is even and present number is greater than the next number than we have to add it or just leave it
+        if direction == 'even' and nums[i] >= nums[i+1]:
+            ans += nums[i]
+            direction = 'odd'
+    #### if it is odd then check if the number is less than the next number than ignore it after that we have to change the even to odd or odd to even 
+        elif direction == 'odd' and nums[i] <= nums[i+1]:
+            ans -= nums[i]
+            direction = 'even'
+    #### after completion of loop than we have to check if it is odd then we have return ans or else add the last element to the answer
+    if direction == 'odd':
+        return ans
+    return ans + nums[-1]
+
 
 ##### Recursive solution :
 
