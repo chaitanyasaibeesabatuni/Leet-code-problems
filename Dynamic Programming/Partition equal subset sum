@@ -1,0 +1,33 @@
+### Problem statement : https://leetcode.com/problems/partition-equal-subset-sum/
+
+### Logic : if we have to partion the list into equal then we have to know that the sum should be even and the half of sum element should be in present in the list 
+###  now we have to create the set and we have to append the sum of the value to all the values why set because it doesn't allow duplicate values so it reduce memory 
+### space and if the target element present in list then we have to return true 
+
+
+###### solution :
+
+def part(nums):
+  target=sum(nums)//2
+  if sum(nums)%2:
+    return False
+  
+  dp=set()
+  
+  ### intially we doesn't consider any element from the array so the sum should be 0 so we have to add zero to the list 
+  dp.add(0)
+  k=len(nums)
+  for i in range(k-1,-1,-1):
+    temp=set()
+    ### we doesn't need to change our original dp so we have to perform operation on next dp
+    for j in dp:
+      temp.add(j+nums[i])
+      #### we have to add the considering element into the dp because t sums every value but it doesn't include itself so  we have to update it 
+      ####to the list
+      temp.add(j)
+    dp=temp
+  return True if target in dp else False
+  
+  
+nums=list(map(int,input().split())
+print(part(nums))
