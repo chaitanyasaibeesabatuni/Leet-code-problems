@@ -1,0 +1,20 @@
+###### problem statement  : https://leetcode.com/problems/pascals-triangle/
+
+### logic : just create an array and append 0 to the end and begining and by using that add two elements and update it with that array finally return final result 
+
+#### solution : 
+
+def generate(n):
+    final=[0,1,0]
+    res=[[1]]
+    for i in range(n-1):
+        l=[]
+        for j in range(len(final)-1):
+            l.append(final[j]+final[j+1])
+        print(l)
+        res.append(l.copy())
+        final=[0]+l+[0]
+    print(res)
+    return res
+    
+print(generate(int(input()))
