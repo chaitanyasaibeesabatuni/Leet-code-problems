@@ -1,0 +1,22 @@
+#### problem statement  :  https://leetcode.com/problems/minimum-number-of-days-to-eat-n-oranges/
+
+#### Logic : logic is just simple we have to find the minimum no of days to eat the entire orages so we check all the possibilites but we skip eating one orange because 
+#### it increase time complexity and we have to add it two the even and odd itself so we can ignore that case 
+
+#### solution :
+
+def minDays(n):
+    dp={0:0,1:1}
+
+    def bfs(n):
+        if n in dp:
+            return dp[n]
+
+        even=1+(n%2)+bfs(n//2)
+        odd=1+(n%3)+bfs(n//3)
+        dp[n]=min(even,odd)
+
+        return dp[n]
+    return bfs(n)
+    
+print(minDays(int(input()))
