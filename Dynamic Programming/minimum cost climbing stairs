@@ -1,0 +1,20 @@
+#### problem statement  : https://leetcode.com/problems/min-cost-climbing-stairs/
+
+### Logic : we have to traverse from reverse of the list and add minmum of the box with respect the next boxes and just return the min of first and second box
+
+
+#### solution :
+
+
+def minCostClimbingStairs(cost):
+    cost.append(0)
+    n=len(cost)
+     #### Here we are taking n-3 because the last two values are added with zero so it always becomes the same value so it doesn't need to compute again so we can start 
+     #### from -3 value
+    for i in range(n-3,-1,-1):
+        cost[i]+=min(cost[i+1],cost[i+2])
+    return min(cost[0],cost[1])
+    
+ 
+cost=list(map(int,input().split())
+print(minCostClimbingStairs(cost))
