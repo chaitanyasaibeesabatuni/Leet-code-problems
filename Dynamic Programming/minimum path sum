@@ -1,0 +1,20 @@
+#### problem statement  : https://leetcode.com/problems/minimum-path-sum/
+
+#### Logic : it is similar to unique path sum  like we have to come from bottom to the up grid so we have to check the right and bottom grid so we can add it to the 
+#### result we have to take the min of those values and add it to the result but first we have intilize the grid with inf values 
+
+#### Solution :
+
+def maxsum(grid):
+  row,col=len(grid),len(grid[0])
+  res=[[float("inf")]*(col+1) for i in range(row+1)]
+  res[row-1][col]=0
+  for r in range(row-1,-1,-1):
+  `for c in range(col-1,-1,-1):
+    res[r][c]=grid[r][c]+min(res[r+1][c],res[r][c+1])
+  return res[0][0]
+  
+
+r,c=map(int,input().split())
+grid=[[int(i) for i in input().split()] for i in range(r)]
+print(maxsum(grid))
