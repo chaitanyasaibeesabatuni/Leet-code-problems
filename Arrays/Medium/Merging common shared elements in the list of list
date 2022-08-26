@@ -1,0 +1,31 @@
+##### problem statement : https://www.geeksforgeeks.org/python-merge-list-with-common-elements-in-a-list-of-lists/
+##### problem statement : https://stackoverflow.com/questions/4842613/merge-lists-that-share-common-elements
+
+#### logic : just select first element in the list and iterate through out the entire list until it fails to find the common elements in the list if it finds common 
+#### elements then update the checking element and remove it from the list if dosen't present then it should be remain in the list and add the first element to the 
+### to the output list and iterate the entire process until we nill the given list 
+
+
+### solution :
+
+l=[[11, 27, 13], [11, 27, 55], [22, 0, 43],
+ [22, 0, 96], [13, 27, 11], [13, 27, 55],
+ [43, 0, 22], [43, 0, 96], [55, 27, 11]]
+out=[]
+while len(l)>0:
+    first,rem=l[0],l[1:]
+    first=set(first)
+    c=-1
+    while len(first)>c:
+        c=len(first)
+
+        final=[]
+        for i in rem:
+            if len(first.intersection(set(i)))>0:
+                first|=set(i)
+            else:
+                final.append(i)
+        rem=final
+    out.append(list(first))
+    l=rem
+print(out)
