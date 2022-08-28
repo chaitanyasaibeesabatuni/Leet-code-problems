@@ -1,0 +1,47 @@
+#### problem statement : https://leetcode.com/problems/sort-the-matrix-diagonally/
+
+#### Logic : first insert the values of first row and first coloumn here we gonna repeat one element that is 0,0 so pop that and now by using the the indexes we gonna 
+#### first append the elements into a  list and sort that and finally we gonna update the elements of the list
+
+
+### Solution :
+
+
+def matrix(mat):
+  
+  row=len(mat)
+  col=len(mat[0])
+  
+  arr=[]
+  for i in range(row):
+    arr.append([i,0])
+  for j in range(col):
+    arr.append([0,j])
+  
+  # removing the repeating (0,0) index from the array 
+  arr.pop(0)
+  
+  for x,y in arr:
+    l=[]
+    ## checking the each index diagnolly and sort them 
+    i,j=x,y
+  
+    ### elements extraction from mat
+  
+    while i<row and j<col:
+      l.append(mat[i][j])
+      i,j=i+1,j+1
+    l.sort()
+  
+    ### arranging elements in order of each index
+    i,j=x,y
+    while i<row and j<col:
+      mat[i][j]=l.pop(0)
+      i+=1
+      j+=1
+  return mat
+  
+  
+n,m=map(int,input().split())
+mat=[[int(i) for i in input().split()] for j in range(n)]
+print(matrix(mat))
