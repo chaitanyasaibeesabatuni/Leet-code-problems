@@ -1,0 +1,44 @@
+##### problem statement :   https://leetcode.com/problems/stone-game/
+
+### logic : here we can always find true because there is chance that alice always wins no lets consider the logic other than dp way alice has choice to pick first 
+#### element either first or last here there are give that we get odd number of elements so if we choose first element and traverse through the list we get upto last
+## first element or if we select last element and traverse to begining we get upto 2 element i.e we get all even or odd indexed elements for alice so there is a chance 
+#### both of them may get max so either way alice would win so it is the best way to find it 
+
+#### solution :
+### this approach works only if the len of piles is strictly odd when it is even then it become equal sum for both alice and charlie then it difficult to find the answer
+
+def stonegame(piles):
+  k=len(piles)
+  a,b=0,0
+  for i in range(k):
+    if i%2:
+      b+=piles[i]
+    else:
+      a+=piles[i]
+  return a>b or b>a
+ 
+piles=list(map(int,input().split()))
+print(stonegame(piles)) 
+
+
+### dp solution :
+### memoization :
+## this approach works for both odd and even lengths of the list 
+
+def stone(piles):
+  
+  @cache  # it is used to stop repeated work in the function without intilizing the dp
+  def dfs(l,r):
+    if l>r:
+      return 0
+    even = True if (r-l)%2 else False
+    left=piles[l] if even else 0
+    right =piles[r] if even else 0
+    return max(dfs(l+1,r)+left,dfs(l,r-1)+right)
+  return dfs(0,len(piles)-1)>(sum(piles))//2
+  
+piles=list(map(int,input().split())
+print(stone(piles))
+    
+  
