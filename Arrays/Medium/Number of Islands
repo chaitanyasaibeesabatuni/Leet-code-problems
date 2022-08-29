@@ -1,0 +1,40 @@
+### problem statement  : https://leetcode.com/problems/number-of-islands/
+
+#### Logic : for the entire matrix check the breadth first search and then if we find the element in the grid and we have to insert true to the checking matrix 
+#### and check the entire process if it is surrounded by the elements then we have to change the checking grid i.e visited grid and increment the count value
+
+### here we can solve this by using dfs or bfs or unique find any way but here were are using dfs
+
+### solution :
+
+def numIslands(self, grid: List[List[str]]) -> int:
+    row=len(grid)
+    col=len(grid[0])
+
+    visited=[[False]*col for _ in range(row)]
+
+    directions=[(0,1),(0,-1),(1,0),(-1,0)]
+    count=0
+
+    def bfs(r,c):
+
+        for i,j in directions:
+            x,y=r+i,j+c
+
+            if x in range(row) and y in range(col) and not visited[x][y] and grid[x][y]=="1":
+                visited[x][y]=True
+                bfs(x,y)
+
+
+
+    for i in range(row):
+        for j in range(col):
+            if grid[i][j]=="1" and not visited[i][j]:
+                visited[i][j]=True
+                count+=1
+                bfs(i,j)
+    return count
+   
+n,m=map(int,input().split()))
+gird=[[int(i) for i in input().split()] for _ in range(n)]
+print(numsIslands(grid))
