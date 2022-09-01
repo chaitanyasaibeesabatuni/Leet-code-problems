@@ -1,0 +1,33 @@
+##### problem statement :  https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/
+
+
+### logic :  here we have to traverse the entire list by using caching and recursive method here we have to steps first step is either selecting buy or cooldown or sell
+### if we sell then we doesn't buy the stock we have to cool so buy and cool down takes one step to forward but sell takes to step to forward that the entire logic
+
+##### Solution :
+
+def besttime(prices):
+  k=len(prices)
+  
+  dp={}
+  
+  def dfs(i,buying):
+    if i>=k:
+      return 0
+    if (i,buying) in dp:
+      return dp[(i,buying)]
+    
+    if buying:
+      buy=dfs(i+1,not buying)-prices[i]
+      cool=dfs(i+1,buying)
+      dp[(i,buying)]=max(cool,buy)
+    else:
+      sell=dfs(i+2,not buying)+prices[i]
+      cool=dfs(i+1,buying)
+      dp[(i,buying)]=max(cool,sell)
+    return dp[(i,buying)]
+  return dfs(i,True)
+  
+  
+l=list(map(int,input().split()))
+print(besttime(l))
