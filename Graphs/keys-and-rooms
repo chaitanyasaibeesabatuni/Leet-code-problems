@@ -1,0 +1,32 @@
+#### problem statement : https://leetcode.com/problems/keys-and-rooms/description/
+
+#### logic : just traverse the entire list using dfs or bfs then if key present in node then just put it in seen finally if all seen is True then return True else false
+
+
+#### solution :
+
+
+#### dfs approach :
+
+class Solution(object):
+    def canVisitAllRooms(self, rooms):
+        """
+        :type rooms: List[List[int]]
+        :rtype: bool
+        """
+        n=len(rooms)
+        seen=[False]*n
+        seen[0]=True
+
+        stack=[rooms[0]]
+
+        while stack:
+
+            temp=stack.pop()
+
+            for i in temp:
+                if not seen[i]:
+                    seen[i]=True
+                    stack.append(rooms[i])
+        return True if all(seen)==True else False
+        
