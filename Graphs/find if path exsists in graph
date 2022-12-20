@@ -1,0 +1,100 @@
+#### problem statement : https://leetcode.com/problems/find-if-path-exists-in-graph/description/
+
+#### solution page : https://leetcode.com/problems/find-if-path-exists-in-graph/solutions/2715942/find-if-path-exists-in-graph/?orderBy=most_relevant
+
+#### very very useful to know the algorithm usage of dfs and bfs 
+
+###### solution using bfs and dfs :
+
+class Solution(object):
+    def validPath(self, n, edges, source, destination):
+
+
+        #bfs
+
+        graph=collections.defaultdict(list)
+
+        for i,j in edges:
+            graph[i].append(j)
+            graph[j].append(i)
+        q=[source]
+        seen=[False]*n
+        seen[source]=True
+        while q:
+            temp=q.pop(0)
+            if temp==destination:
+                return True
+
+            for i in graph[temp]:
+                if seen[i]==False:
+                    seen[i]=True
+                    q.append(i)
+        return False
+        
+        
+        
+        ######## dfs using recursive method
+        
+                #dfs
+
+        graph=collections.defaultdict(list)
+
+        for i,j in edges:
+            graph[i].append(j)
+            graph[j].append(i)
+
+        seen=[False]*n
+        def helper(curr):
+
+            if curr==destination:
+                return True
+
+            if seen[curr]==False:
+                seen[curr]=True
+
+                for i in graph[curr]:
+                    if helper(i):
+                        return True
+
+            return False
+
+        return helper(source)
+        
+        
+       ############ dfs using iterative method 
+       
+       
+               #dfs
+
+        graph=collections.defaultdict(list)
+
+        for i,j in edges:
+            graph[i].append(j)
+            graph[j].append(i)
+
+        seen=[False]*n
+        seen[source]=True
+
+        stack=[source]
+
+        while stack:
+
+            temp=stack.pop()
+
+            for i in graph[temp]:
+
+                if i==destination:
+                    return True
+                
+                if not seen[i]:
+                    seen[i]=True
+                    stack.append(i)
+
+        return seen[destination]
+        
+        
+        
+        
+        
+        
+        
