@@ -1,0 +1,35 @@
+##### problem statement : https://leetcode.com/problems/add-one-row-to-tree/
+
+### logic : if depth is equal to one then create a new node and add exsisting root to the left of newnode else travese the tree upto the previous depth of root and create a
+node and insert the node between root and connect the root and return the root .
+
+
+#### Solution : dfs approach
+
+
+class Solution:
+    def addOneRow(self, root: Optional[TreeNode], val: int, depth: int) -> Optional[TreeNode]:
+        
+        def helper(node,height):
+            if node is None:
+                return
+            if height == depth-1:
+                print(height,node.val)
+                templ = node.left
+                tempr = node.right
+                node.left = TreeNode(val)
+                node.right = TreeNode(val)
+                node.left.left = templ
+                node.right.right  = tempr
+                return
+            
+            helper(node.left,height+1)
+            helper(node.right,height+1)
+        if depth ==1:
+            newRoot = TreeNode(val)
+            
+            newRoot.left = root
+            return newRoot
+        
+        helper(root,1) 
+        return root
